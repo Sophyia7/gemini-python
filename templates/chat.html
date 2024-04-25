@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background: linear-gradient(to right, #56ab2f, #a8e063); height: 100vh; display: flex; justify-content: center; align-items: center;">
+    <div class="container">
+        <header>
+            <h1>Welcome to Gemini Chat</h1>
+        </header>
+        <main>
+            <div id="chatbox" class="chatbox" style="width: 80%; height: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; background-color: #fff; overflow-y: auto; display: flex; flex-direction: column; align-items: center;">
+                <!-- Chat messages will be added here -->
+            </div>
+            <form id="chatform" class="chatform" style="width: 80%; margin: 20px auto; display: flex; justify-content: center;">
+                <input type="text" id="message" name="message" placeholder="Type your message here..." style="width: 70%; padding: 10px; border: 1px solid #ddd;">
+                <input type="submit" value="Send" class="send-button" style="padding: 10px 20px; border: none; background-color: #007BFF; color: #fff; cursor: pointer;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007BFF';">
+            </form>
+        </main>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $('#chatform').on('submit', function(e){
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/chat',
+                data: {
+                    message: $('#message').val()
+                },
+                success: function(response){
+                    $('#chatbox').append('<p class="user-message" style="margin: 0 0 10px; text-align: center;">You: ' + $('#message').val() + '</p>');
+                    $('#chatbox').append('<p class="gemini-message" style="margin: 0 0 10px; text-align: center;">Gemini: ' + response.message + '</p>');
+                    $('#message').val('');
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
