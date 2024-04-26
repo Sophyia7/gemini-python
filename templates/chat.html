@@ -1,42 +1,52 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Chat</title>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Chat</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <h1>Welcome to Gemini Chat</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Chat Box to display conversation -->
+      <div id="chatbox" class="chatbox">
+        <!-- Chat messages will be added here -->
+      </div>
+
+      <!-- Chat Form for user input -->
+      <form id="chatform" class="chatform">
+        <input
+          type="text"
+          id="message"
+          name="message"
+          placeholder="Type your message here..."
+        />
+        <button type="submit" class="send-button">
+          <span>Send</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M1.94607 9.31543C1.42353 9.14125 1.4194 8.86022 1.95682 8.68108L21.043 2.31901C21.5715 2.14285 21.8746 2.43866 21.7265 2.95694L16.2733 22.0432C16.1223 22.5716 15.8177 22.59 15.5944 22.0876L11.9999 14L17.9999 6.00005L9.99992 12L1.94607 9.31543Z"
+            ></path>
+          </svg>
+        </button>
+      </form>
+    </main>
+
+    <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background: linear-gradient(to right, #56ab2f, #a8e063); height: 100vh; display: flex; justify-content: center; align-items: center;">
-    <div class="container">
-        <header>
-            <h1>Welcome to Gemini Chat</h1>
-        </header>
-        <main>
-            <div id="chatbox" class="chatbox" style="width: 80%; height: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; background-color: #fff; overflow-y: auto; display: flex; flex-direction: column; align-items: center;">
-                <!-- Chat messages will be added here -->
-            </div>
-            <form id="chatform" class="chatform" style="width: 80%; margin: 20px auto; display: flex; justify-content: center;">
-                <input type="text" id="message" name="message" placeholder="Type your message here..." style="width: 70%; padding: 10px; border: 1px solid #ddd;">
-                <input type="submit" value="Send" class="send-button" style="padding: 10px 20px; border: none; background-color: #007BFF; color: #fff; cursor: pointer;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007BFF';">
-            </form>
-        </main>
-    </div>
-    <script>
-    $(document).ready(function(){
-        $('#chatform').on('submit', function(e){
-            e.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: '/chat',
-                data: {
-                    message: $('#message').val()
-                },
-                success: function(response){
-                    $('#chatbox').append('<p class="user-message" style="margin: 0 0 10px; text-align: center;">You: ' + $('#message').val() + '</p>');
-                    $('#chatbox').append('<p class="gemini-message" style="margin: 0 0 10px; text-align: center;">Gemini: ' + response.message + '</p>');
-                    $('#message').val('');
-                }
-            });
-        });
-    });
-    </script>
-</body>
+
+    <script src="./script.js"></script>
+  </body>
 </html>
