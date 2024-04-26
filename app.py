@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 import google.generativeai as genai
 import os 
+import markdown
 
 app = Flask(__name__)
 
@@ -46,11 +47,10 @@ def chat_view():
     if request.method == 'POST':
         user_input = request.form.get('message')
         response = chat.send_message(user_input)
-        return {'message': response.text}
+        formatted = markdown.markdown(response.text)
+        # return {'message': response.text}
+        return {'message': formatted}
     return render_template('chat.html')
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
