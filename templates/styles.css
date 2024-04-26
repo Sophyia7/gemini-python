@@ -1,20 +1,31 @@
-body {
-  font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #56ab2f, #a8e063);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  box-sizing: content-box;
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  padding: 1rem;
+  background: linear-gradient(to right, #0c0c0c, #262726);
+  color: white;
+}
+
+header {
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 1rem 0;
 }
 
 #chatbox {
-  width: 80%;
+  max-width: 500px;
   height: 400px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ddd;
+  border-radius: 1rem;
   background-color: #fff;
   overflow-y: auto;
   display: flex;
@@ -23,27 +34,38 @@ body {
 }
 
 #chatform {
-  width: 80%;
+  max-width: 500px;
   margin: 20px auto;
   display: flex;
   justify-content: center;
+  gap: 1rem;
 }
 
-#chatform input[type="text"] {
-  width: 70%;
+#chatform input[type='text'] {
+  width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
+  border-radius: 0.5rem;
 }
 
-#chatform input[type="submit"] {
+.send-button {
   padding: 10px 20px;
   border: none;
-  background-color: #007BFF;
+  border-radius: 0.5rem;
+  background-color: #007bff;
   color: #fff;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-#chatform input[type="submit"]:hover {
+.send-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.send-button:hover {
   background-color: #0056b3;
 }
 
@@ -51,6 +73,3 @@ p {
   margin: 0 0 10px;
   text-align: center;
 }
-
-
-
