@@ -1,0 +1,11 @@
+version: '1.0'
+
+services:
+  gemini_python:
+    container_name: gemini_python 
+    image: gemini_python
+    ports:
+      - "8000:8000"
+    build: 
+      context: .
+      dockerfile: Dockerfile
